@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input Text(number only) </title>
+	<style type="text/css">
+		input[type=text]{
+			height:50px;
+			width: 1000px;
+			font-size: 50px;
+		}
+	</style>
+<body>
+	<input type="text" name="" id="text">
+
+	<script type="text/javascript">
+		var text = document.getElementById("text");
+		text.onkeypress = function(e){
+			e = e||window.event; //for compatibility
+			console.log(e.keyCode);
+			if(e.keyCode>=48 && e.keyCode<=57){ // base on ASCII code
+				return true;
+			}else{
+				return false;
+			}
+			
+			
+		}
+	</script>
+</body>
+
+</html>
