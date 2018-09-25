@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TOP search</title>
+	<style type="text/css">
+		body,div,ul,li,input{
+			margin: 0;
+			padding:0;
+		}
+		ul{
+			list-style: none;
+		}
+		.box{
+			margin: 15% auto;
+			height: 300px;
+			width: 500px;
+			position: relative;
+		}
+		
+		.box .list{
+			border: 1px solid black;
+			width: 388px;
+			padding: 5px;
+			display: none;
+			position: absolute;
+		}
+
+		.txt-search{
+			width: 400px;
+			height: 20px;
+			font-size: 15px;
+			border: 1px solid black;
+		}
+		.box .list li{
+			height: 20px;
+			line-height: 20px;
+
+
+		}
+
+		.box .list li:hover{
+			background-color: yellow;
+			cursor: pointer;
+			padding-left: 10px;
+		}
+		#btn{
+			display: inline-block;
+			padding: 10px;
+			width: 95px;
+			height: 5px;
+			font-size: 20px;
+			float: right;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<form action="#" method="post">
+			<input type="text" name="" id="txt_search" class="txt-search">
+			<input type="button" name="" value="Search" id="btn">
+		</form>	
+		<ul class="list" id="tiplist">
+			<li>JavaScript</li>
+			<li>NBA</li>
+			<li>Dota2 International 2018</li>
+			<li>Trump Trade war</li>
+			<li>Have a great day!</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		// display when text get focus 
+		(function(){
+			window.onload =function(){
+				var txtSearch = document.getElementById("txt_search");
+				var tiplist = document.getElementById("tiplist");
+				var lilist = tiplist.getElementsByTagName('li');
+				txtSearch.onfocus= function(){
+					tiplist.style.display="block";
+				};
+				txtSearch.onblur=function(){
+					tiplist.style.display="none";
+				};
+
+				for(var i =0; i<lilist.length;i++){
+					lilist[i].onmousedown = liHandler; // there will be a conflict between onclick and onblur if use onclick
+				};
+				function liHandler(){
+					var text = this.innerHTML;
+					txtSearch.value= text;
+				};
+			};
+		})();
+
+
+	</script>
+</body>
+</html>
