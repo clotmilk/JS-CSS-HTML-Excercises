@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Right Click Event</title>
+	<style type="text/css">
+		body,h1,ul,li{
+			padding: 0;
+			margin-top: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.menu{
+			position: absolute;
+			border:1px solid black;
+			display: none;
+		}
+		h1{
+			margin:100px 200px;
+		}
+		.option{
+			border:1px solid black;
+			cursor: pointer;
+			background-color: yellow;
+			
+		}
+		.menu li:hover{
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="h1">Right click this to see more infomation</h1>
+	
+	<ul class="menu" id="menuList">
+		<li class="option">RunBin Ju</li>
+		<li class="option">Mcmaster University</li>
+		<li class="option">Computer Engineering</li>
+		<li class="option">905-512-2546</li>
+		<li class="option">Ottawa</li>
+	</ul>
+	
+	<script type="text/javascript">
+		(function(){
+			window.onload= function(){
+				var Rclick = document.getElementById("h1");
+				var Option = document.getElementById("menuList");
+				Rclick.onmousedown = function(e){
+					e=e||window.event;
+					if(e.button== 2 || e.button ==6){
+						Option.style.display="block";	
+					};
+					//popup the menu at mouse position
+					var pageX = e.clientX;
+					var pageY = e.clientY;
+					menuList.style.left = pageX +'px';
+					menuList.style.top = pageY +'px';
+				};
+				//close the menu when click event occurs again
+				document.onclick = function(e){
+					menuList.style.display = "none";
+				}
+				// remove Default Right Click event menu;
+				document.oncontextmenu =function(e){
+					e= e|| window.event;
+					if(e.preventDefault){
+						e.preventDefault();
+					}else{
+						e.returnValue = false;
+					}
+					return false;
+				};
+
+			};
+		})();
+	</script>	
+</body>
+</html>
